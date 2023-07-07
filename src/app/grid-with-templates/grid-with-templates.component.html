@@ -1,0 +1,83 @@
+<div class="column-layout group">
+  <igx-grid [data]="northwindEmployees" primaryKey="employeeID" displayDensity="cosy" [rowEditable]="true" [allowFiltering]="true" filterMode="excelStyleFilter" class="grid">
+    <igx-column field="lastName" dataType="string" header="Employee" [sortable]="true" [resizable]="true" [selectable]="false">
+      <ng-template igxCell let-cell="cell">
+        <div class="row-layout group_1">
+          <igx-avatar [src]="cell.row.data['avatarUrl']" FontSet="Material" shape="circle" class="avatar"></igx-avatar>
+          <div class="column-layout group_2">
+            <div class="row-layout group_3">
+              <p class="ig-typography__caption text">
+                {{ cell.row.data['firstName'] }}
+              </p>
+              <p class="ig-typography__caption text">
+                {{ cell.value }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </igx-column>
+    <igx-column field="title" dataType="string" header="title" [sortable]="true" [resizable]="true" [selectable]="false">
+      <ng-template igxCellEditor let-cell="cell">
+        <igx-select type="border" [(ngModel)]="cell.editValue" class="select">
+          <igx-select-item [value]="item.title" *ngFor="let item of northwindEmployees">
+            {{ item.title }}
+          </igx-select-item>
+        </igx-select>
+      </ng-template>
+    </igx-column>
+    <igx-column header="Test width" [sortable]="true" [resizable]="true" [selectable]="false">
+      <ng-template igxCell let-cell="cell">
+        <button igxButton="raised" igxRipple class="button">
+          {{ cell.row.data['title'] }}
+        </button>
+      </ng-template>
+    </igx-column>
+    <igx-column header="Address" [editable]="false" [resizable]="true" [selectable]="false">
+      <ng-template igxCell let-cell="cell">
+        <div class="column-layout group_4">
+          <p class="ig-typography__caption text">
+            {{ cell.row.data['address'].street }}
+          </p>
+          <div class="row-layout group_5">
+            <p class="ig-typography__caption text_1">
+              {{ cell.row.data['address'].city }}
+            </p>
+            <p class="ig-typography__caption text_1">
+              {{ cell.row.data['address'].region }}
+            </p>
+            <p class="ig-typography__caption text_1">
+              {{ cell.row.data['address'].country }}
+            </p>
+            <p class="ig-typography__caption text_1">
+              {{ cell.row.data['address'].postalCode }}
+            </p>
+          </div>
+        </div>
+      </ng-template>
+    </igx-column>
+    <igx-column field="hireDate" dataType="date" header="hireDate" [sortable]="true" [resizable]="true" [selectable]="false"></igx-column>
+    <igx-column field="address.phone" dataType="string" header="Phone no." [sortable]="true" [resizable]="true" [selectable]="false">
+      <ng-template igxCell let-cell="cell">
+        <igx-chip class="chip">
+          <igx-prefix>
+            <igx-icon class="icon">
+              phone
+            </igx-icon>
+          </igx-prefix>
+          {{ cell.value }}
+        </igx-chip>
+      </ng-template>
+    </igx-column>
+    <igx-column width="151px" [filterable]="false" [selectable]="false">
+      <ng-template igxCell let-cell="cell">
+        <button igxButton="flat" igxRipple class="button">
+          <span>Details</span>
+          <igx-icon>
+            arrow_forward
+          </igx-icon>
+        </button>
+      </ng-template>
+    </igx-column>
+  </igx-grid>
+</div>

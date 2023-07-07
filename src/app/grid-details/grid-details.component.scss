@@ -1,0 +1,28 @@
+:host {
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: flex-start;
+  gap: 16px;
+}
+.row-layout {
+  display: flex;
+}
+.group {
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: flex-start;
+  gap: 16px;
+  position: relative;
+  padding: 16px;
+}
+.icon {
+  font-size: 36px;
+  width: 36px;
+  height: 36px;
+}
+.h5 {
+  height: max-content;
+  min-width: min-content;
+}
